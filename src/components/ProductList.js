@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 import colors from './colors';
@@ -54,7 +55,7 @@ const Button = styled.i`${props => css`
   `}
 `;
 
-const ProductList = ({ products, order }) => (
+const ProductList = ({ products, onClickOrder }) => (
   <Wrapper>
     <Row field>
       <Column name>品項</Column>
@@ -68,15 +69,39 @@ const ProductList = ({ products, order }) => (
           <Column name>{product.name}</Column>
           <Column symbol>{product.symbol}</Column>
           <Column button>
-            <Button hot={product.hot} className="fa fa-plus-circle" onClick={() => order(`熱${product.name}`)} />
+            <Button hot={product.hot} className="fa fa-plus-circle" onClick={() => onClickOrder({
+              number: products.length,
+              name: `熱${product.name}`,
+              paid: false,
+              delivered: false,
+            })}
+            />
           </Column>
           <Column button>
-            <Button ice={product.ice} className="fa fa-plus-circle" onClick={() => order(`冰${product.name}`)} />
+            <Button ice={product.ice} className="fa fa-plus-circle" onClick={() => onClickOrder({
+              number: products.length,
+              name: `冰${product.name}`,
+              paid: false,
+              delivered: false,
+            })}
+            />
           </Column>
         </Row>
       ))
     }
   </Wrapper>
 );
+
+ProductList.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    symbol: PropTypes.string.isRequired,
+    hot: PropTypes.bool.isRequired,
+    ice: PropTypes.bool.isRequired,
+    hotPrice: PropTypes.number.isRequired,
+    icePrice: PropTypes.number.isRequired,
+  }).isRequired).isRequired,
+  onClickOrder: PropTypes.func.isRequired,
+};
 
 export default ProductList;

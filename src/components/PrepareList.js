@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
 
 import colors from './colors';
@@ -73,7 +74,7 @@ const Button = styled.i`
   animation: ${jumpOut} linear 0.5s;
 `;
 
-const PrepareList = ({ prepares }) => (
+const PrepareList = ({ prepares, status }) => (
   <Wrapper>
     <Row field>
       <Column field flex={1} center>編號</Column>
@@ -97,5 +98,15 @@ const PrepareList = ({ prepares }) => (
     }
   </Wrapper>
 );
+
+PrepareList.propTypes = {
+  prepares: PropTypes.arrayOf(PropTypes.shape({
+    number: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    paid: PropTypes.bool.isRequired,
+    delivered: PropTypes.bool.isRequired,
+  }).isRequired).isRequired,
+  status: PropTypes.string.isRequired,
+};
 
 export default PrepareList;
