@@ -7,11 +7,11 @@ const initialState = [
   { number: 4, name: '冰蜂蜜冰咖啡', paid: false, delivered: false },
 ];
 
-const prepare = (state = initialState, action) => {
+const prepares = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-export default prepare;
+export default prepares;

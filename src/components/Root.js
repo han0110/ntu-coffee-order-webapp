@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import media from './style-utils';
+import Navbar from './Navbar';
 import HomePage from './HomePage';
 import OrderPage from './OrderPage';
 
@@ -29,6 +30,7 @@ const Root = ({ store }) => (
   <Provider store={store}>
     <HashRouter>
       <Wrapper>
+        <Navbar />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
         <Route path="/home" component={HomePage} />
         <Route path="/order" component={OrderPage} />

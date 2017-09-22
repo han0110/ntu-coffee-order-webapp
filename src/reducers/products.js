@@ -18,11 +18,11 @@ const initialState = [
   { name: '薰衣草鮮奶茶', symbol: '?', hot: false, ice: true, hotPrice: 0, icePrice: 45 },
 ];
 
-const product = (state = initialState, action = {}) => {
+const products = (state = initialState, action = {}) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-export default product;
+export default products;
