@@ -42,7 +42,6 @@ const Navbar = () => (
   <Wrapper>
     <Link to="home">首頁</Link>
     <Link to="order">點餐</Link>
-    <Link to="setting">設定</Link>
     <Link to="login" toRight>登入</Link>
   </Wrapper>
 );

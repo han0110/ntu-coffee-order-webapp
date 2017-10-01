@@ -69,21 +69,15 @@ const ProductList = ({ products, onClickOrder }) => (
           <Column name>{product.name}</Column>
           <Column symbol>{product.symbol}</Column>
           <Column button>
-            <Button hot={product.hot} className="fa fa-plus-circle" onClick={() => onClickOrder({
-              number: products.length,
-              name: `熱${product.name}`,
-              paid: false,
-              delivered: false,
-            })}
+            <Button hot={product.hot} className="fa fa-plus-circle" onClick={() => {
+              if (product.hot) onClickOrder({ name: product.name, type: 'hot', cost: product.hotPrice })
+            }}
             />
           </Column>
           <Column button>
-            <Button ice={product.ice} className="fa fa-plus-circle" onClick={() => onClickOrder({
-              number: products.length,
-              name: `冰${product.name}`,
-              paid: false,
-              delivered: false,
-            })}
+            <Button ice={product.ice} className="fa fa-plus-circle" onClick={() => {
+              if (product.ice) onClickOrder({ name: product.name, type: 'ice', cost: product.icePrice })
+            }}
             />
           </Column>
         </Row>

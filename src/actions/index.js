@@ -16,6 +16,8 @@ import {
   DELETE_REQUEST,
   DELETE_SUCCESS,
   DELETE_FAILURE,
+
+  CLEAR_ORDER,
 } from '../constants';
 
 export const order = data => async (dispatch) => {
@@ -25,15 +27,15 @@ export const order = data => async (dispatch) => {
   dispatch({ type: ORDER_SUCCESS });
 };
 
-export const pay = () => async (dispatch) => {
-  dispatch({ type: PAY_REQUEST });
-  const res = await axios.post('/api/update', {});
+export const pay = number => async (dispatch) => {
+  dispatch({ type: PAY_REQUEST, number });
+  const res = await axios.post('/api/update');
   if (res.status !== 200) dispatch({ type: PAY_FAILURE });
   dispatch({ type: PAY_SUCCESS });
 };
 
-export const deliver = () => async (dispatch) => {
-  dispatch({ type: DELIVER_REQUEST });
+export const deliver = number => async (dispatch) => {
+  dispatch({ type: DELIVER_REQUEST, number });
   const res = await axios.post('/api/update', {});
   if (res.status !== 200) dispatch({ type: DELIVER_FAILURE });
   dispatch({ type: DELIVER_SUCCESS });
@@ -45,3 +47,5 @@ export const deleteOrder = data => async (dispatch) => {
   if (res.status !== 200) dispatch({ type: DELETE_FAILURE });
   dispatch({ type: DELETE_SUCCESS });
 };
+
+export const clearOrder = dispatch => dispatch({ type: CLEAR_ORDER });

@@ -9,6 +9,7 @@ import media from './style-utils';
 import Navbar from './Navbar';
 import HomePage from './HomePage';
 import OrderPage from './OrderPage';
+import LoginPage from './LoginPage';
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -35,6 +36,7 @@ const Root = ({ store }) => (
         <Route exact path="/" render={() => <Redirect to="/home" />} />
         <Route path="/home" component={HomePage} />
         <Route path="/order" component={OrderPage} />
+        <Route path="/login" component={LoginPage} />
       </Wrapper>
     </HashRouter>
   </Provider>

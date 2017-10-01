@@ -1,6 +1,6 @@
 const colors = {
-  pink: 'rgba(215,143,166,1)',
-  transparentPink: 'rgba(215,143,166,0.3)',
+  pink: 'rgba(219,112,147,1)',
+  transparentPink: 'rgba(219,112,147,0.3)',
   yello: 'rgba(253,227,167,1)',
 
   addHot: 'rgba(207,0,15,1)',

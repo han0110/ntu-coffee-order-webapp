@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import media from './style-utils';
+import colors from './colors';
 
 const Wrapper = styled.div`
   height: calc( 100vh - 60px );
@@ -21,7 +22,7 @@ const H1 = styled.div`
   padding-left: 15px;
   
   font-size: 2em;
-  border-left: 10px solid #D78FA6;
+  border-left: 10px solid ${colors.pink};
 `;
 
 const Ol = styled.div`
@@ -37,16 +38,17 @@ const Li = styled.div`
 `;
 
 const Color = styled.span`
-  color: #${props => props.color};
+  color: ${props => props.color};
 `;
 
 const HomePage = () => (
   <Wrapper>
     <H1>點餐標準流程</H1>
     <Ol>
-      <Li nth={1}>確認餐點後新增訂單，訂單會新增至<Color color="D78FA6"> 準備中 </Color></Li>
-      <Li nth={2}>確認收到錢後，將該筆訂單的<Color color="3FC380"> 已付款 </Color>打勾</Li>
-      <Li nth={3}>確認送餐後，將該筆訂單的<Color color="3FC380"> 已送餐 </Color>打勾，等待 5 秒後會自行消失</Li>
+      <Li nth={1}>確認餐點後新增訂單，訂單會新增至<Color color={colors.pink}> 準備中 </Color></Li>
+      <Li nth={2}>確認收到錢後，將該筆訂單的<Color color="rgba(63,200,128,1)"> 付款 </Color>欄打勾</Li>
+      <Li nth={3}>確認送餐後，將該筆訂單的<Color color="rgba(63,200,128,1)"> 出杯 </Color>欄打勾</Li>
+      <Li nth={4}>按右下角<Color color="rgba(160,160,160,1)"> clear </Color>將已出杯的紀錄隱藏</Li>
     </Ol>
   </Wrapper>
 );
