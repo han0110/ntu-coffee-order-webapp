@@ -1,23 +1,23 @@
 import { connect } from 'react-redux';
 
-import { pay, deliver, clearOrder } from '../actions';
+import { pay, deliver, clearUpdateOrder } from '../actions';
 import PrepareList from '../components/PrepareList';
 
 const mapStateToProps = state => ({
-  prepares: state.prepares.data,
-  status: state.prepares.status,
+  orders: state.orders.data.filter(order => !order.clear),
+  status: state.orders.status,
 });
 
 const mapDispatchToProps = dispatch => ({
   onClickPay(number) {
-    dispatch(pay(number));
+    pay(dispatch, number);
   },
   onClickDeliver(number) {
-    dispatch(deliver(number));
+    deliver(dispatch, number);
   },
-  onClickClear() {
-    clearOrder(dispatch);
-  }
+  onClickClear(orders) {
+    dispatch(clearUpdateOrder(orders));
+  },
 });
 
 const PrepareContainer = connect(

@@ -24,8 +24,17 @@ const jumpOut = keyframes`
   }
 `;
 
+const spin = keyframes`
+  from {
+    transform: rotate(0deg)
+  } to {
+    transform: rotate(360deg);
+  }
+`;
+
 const Wrapper = styled.div`
   padding: 15px;
+  margin-bottom: 55px;
 
   flex: 1 1 auto;
   display: flex;
@@ -38,6 +47,8 @@ const Row = styled.div`${props => css`
   max-height: 35px;
   margin-bottom: 10px;
   line-height: 25px;
+
+  box-sizing: border-box;
 
   flex: 1;
   display: flex;
@@ -75,7 +86,7 @@ const Column = styled.div`${props => css`
 
 const Color = styled.span`
   padding-right: 3px;
-  color: ${props => props.type === 'hot' ? colors.addHot : colors.addIce};
+  color: ${props => (props.type === '熱' ? colors.addHot : colors.addIce)};
 `;
 
 const Button = styled.i`
@@ -86,7 +97,10 @@ const Clear = styled.div`
   min-height: 35px;
   max-height: 35px;
   padding: 3px 10px;
-  line-height: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   align-self: flex-end;
   position: fixed;
@@ -96,7 +110,21 @@ const Clear = styled.div`
   border-radius: 5px;
 `;
 
-const PrepareList = ({ prepares, status, onClickPay, onClickDeliver, onClickClear }) => (
+const Loading = styled.div`
+  width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  border-radius: 50%;
+
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid ${colors.pink};
+  border-left: 3px solid ${colors.pink};
+  border-right: 3px solid transparent;
+
+  animation: ${spin} 0.6s linear .2s infinite;
+`;
+
+const PrepareList = ({ orders, status, onClickPay, onClickDeliver, onClickClear }) => (
   <Wrapper>
     <Row field>
       <Column field flex={1} center>編號</Column>
@@ -105,27 +133,29 @@ const PrepareList = ({ prepares, status, onClickPay, onClickDeliver, onClickClea
       <Column field flex={1} center>出杯</Column>
     </Row>
     {
-      prepares.map((prepare, index) => (
-        <Row key={index} paid={prepare.paid} delivered={prepare.delivered} onDoubleClick={() => console.log('hello')}>
-          <Column number center>{prepare.number}</Column>
+      orders.map(order => (
+        <Row key={order.number} paid={order.paid} delivered={order.delivered}>
+          <Column number center>{order.number}</Column>
           <Column name>
-            <Color type={prepare.type}>{prepare.type === 'hot' ? '熱' : '冰'}</Color>{prepare.name}
+            <Color type={order.type}>{order.type}</Color>{order.name}
           </Column>
-          <Column paid center onClick={() => {if (!prepare.paid) onClickPay(prepare.number)}}>
-            {prepare.paid ? <Button className="fa fa-check" /> : prepare.cost}
+          <Column paid center onClick={() => { if (!order.paid) onClickPay(order.number); }}>
+            {order.paid ? <Button className="fa fa-check" /> : order.cost}
           </Column>
-          <Column delivered center onClick={() => {if (prepare.paid) onClickDeliver(prepare.number)}}>
-            {prepare.delivered ? <Button className="fa fa-check" /> : <div style={{ display: 'inline-block' }} />}
+          <Column delivered center onClick={() => { if (order.paid) onClickDeliver(order.number); }}>
+            {order.delivered ? <Button className="fa fa-check" /> : <div style={{ display: 'inline-block' }} />}
           </Column>
         </Row>
       ))
     }
-    <Clear onClick={() => onClickClear()}>clear</Clear>
+    <Clear onClick={() => onClickClear(orders.filter(order => (order.paid === true && order.delivered === true && order.number > 0)))}>
+      {status === 'updating' ? <Loading /> : 'clear'}
+    </Clear>
   </Wrapper>
 );
 
 PrepareList.propTypes = {
-  prepares: PropTypes.arrayOf(PropTypes.shape({
+  orders: PropTypes.arrayOf(PropTypes.shape({
     number: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     paid: PropTypes.bool.isRequired,

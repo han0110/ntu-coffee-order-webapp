@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onClickOrder(data) {
-    dispatch(order(data));
+    order(dispatch, data);
   },
 });
 

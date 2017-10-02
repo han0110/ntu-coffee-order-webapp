@@ -20,6 +20,8 @@ module.exports = {
   },
   "rules": {
     "no-console": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-first-prop-new-line": 0,
+    "react/jsx-max-props-per-line": 0,
   },
 }

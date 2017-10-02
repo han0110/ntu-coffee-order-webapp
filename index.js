@@ -2,6 +2,7 @@ const Koa = require('koa');
 const serve = require('koa-static');
 const bodyParser = require('koa-bodyparser');
 const router = require('./lib/router');
+require('./lib/mongodb');
 
 const app = new Koa();
 const port = 3000;

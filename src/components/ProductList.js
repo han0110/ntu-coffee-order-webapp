@@ -65,18 +65,18 @@ const ProductList = ({ products, onClickOrder }) => (
     </Row>
     {
       products.map((product, index) => (
-        <Row nth={index} key={index}>
+        <Row nth={index} key={product.name}>
           <Column name>{product.name}</Column>
           <Column symbol>{product.symbol}</Column>
           <Column button>
             <Button hot={product.hot} className="fa fa-plus-circle" onClick={() => {
-              if (product.hot) onClickOrder({ name: product.name, type: 'hot', cost: product.hotPrice })
+              if (product.hot) onClickOrder({ name: product.name, type: '熱', cost: product.hotPrice });
             }}
             />
           </Column>
           <Column button>
             <Button ice={product.ice} className="fa fa-plus-circle" onClick={() => {
-              if (product.ice) onClickOrder({ name: product.name, type: 'ice', cost: product.icePrice })
+              if (product.ice) onClickOrder({ name: product.name, type: '冰', cost: product.icePrice });
             }}
             />
           </Column>

@@ -1,51 +1,33 @@
 import axios from 'axios';
 
 import {
-  ORDER_REQUEST,
-  ORDER_SUCCESS,
-  ORDER_FAILURE,
-
-  PAY_REQUEST,
-  PAY_SUCCESS,
-  PAY_FAILURE,
-
-  DELIVER_REQUEST,
-  DELIVER_SUCCESS,
-  DELIVER_FAILURE,
-
-  DELETE_REQUEST,
-  DELETE_SUCCESS,
-  DELETE_FAILURE,
-
-  CLEAR_ORDER,
+  ORDER,
+  PAY,
+  DELIVER,
+  DELETE,
+  GET_ORDER_REQUEST,
+  GET_ORDER_SUCCESS,
+  GET_ORDER_FAILURE,
+  CLEAR_UPDATE_REQUEST,
+  CLEAR_UPDATE_SUCCESS,
+  CLEAR_UPDATE_FAILURE,
 } from '../constants';
 
-export const order = data => async (dispatch) => {
-  dispatch({ type: ORDER_REQUEST, data });
-  const res = await axios.post('/api/update');
-  if (res.status !== 200) dispatch({ type: ORDER_FAILURE });
-  dispatch({ type: ORDER_SUCCESS });
+export const order = (dispatch, data) => dispatch({ type: ORDER, data });
+export const pay = (dispatch, number) => dispatch({ type: PAY, number });
+export const deliver = (dispatch, number) => dispatch({ type: DELIVER, number });
+export const deleteOrder = dispatch => dispatch({ type: DELETE });
+
+export const getSavedOrder = () => async (dispatch) => {
+  dispatch({ type: GET_ORDER_REQUEST });
+  const res = await axios.get('/api/getOrder');
+  if (res.status === 200) dispatch({ type: GET_ORDER_SUCCESS, data: res.data.orders });
+  dispatch({ type: GET_ORDER_FAILURE });
 };
 
-export const pay = number => async (dispatch) => {
-  dispatch({ type: PAY_REQUEST, number });
-  const res = await axios.post('/api/update');
-  if (res.status !== 200) dispatch({ type: PAY_FAILURE });
-  dispatch({ type: PAY_SUCCESS });
+export const clearUpdateOrder = orders => async (dispatch) => {
+  dispatch({ type: CLEAR_UPDATE_REQUEST });
+  const res = await axios.post('/api/update', { orders });
+  if (res.status !== 200) dispatch({ type: CLEAR_UPDATE_FAILURE });
+  dispatch({ type: CLEAR_UPDATE_SUCCESS });
 };
-
-export const deliver = number => async (dispatch) => {
-  dispatch({ type: DELIVER_REQUEST, number });
-  const res = await axios.post('/api/update', {});
-  if (res.status !== 200) dispatch({ type: DELIVER_FAILURE });
-  dispatch({ type: DELIVER_SUCCESS });
-};
-
-export const deleteOrder = data => async (dispatch) => {
-  dispatch({ type: DELETE_REQUEST });
-  const res = await axios.post('/api/delete', data);
-  if (res.status !== 200) dispatch({ type: DELETE_FAILURE });
-  dispatch({ type: DELETE_SUCCESS });
-};
-
-export const clearOrder = dispatch => dispatch({ type: CLEAR_ORDER });

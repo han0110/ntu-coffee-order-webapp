@@ -1,26 +1,16 @@
-// to touch a new record
-export const NEW_RECORD_REQUEST = 'NEW_RECORD_REQUEST';
-export const NEW_RECORD_SUCCESS = 'NEW_RECORD_SUCCESS';
-export const NEW_RECORD_FAILURE = 'NEW_RECORD_FAILURE';
-// to save a record and make it read-only
-export const SAVE_RECORD_REQUEST = 'SAVE_RECORD_REQUEST';
-export const SAVE_RECORD_SUCCESS = 'SAVE_RECORD_SUCCESS';
-export const SAVE_RECORD_FAILURE = 'SAVE_RECORD_FAILURE';
 // when receiving an order
-export const ORDER_REQUEST = 'ORDER_REQUEST';
-export const ORDER_SUCCESS = 'ORDER_SUCCESS';
-export const ORDER_FAILURE = 'ORDER_FAILURE';
+export const ORDER = 'ORDER';
 // when an order being paid
-export const PAY_REQUEST = 'PAY_REQUEST';
-export const PAY_SUCCESS = 'PAY_SUCCESS';
-export const PAY_FAILURE = 'PAY_FAILURE';
+export const PAY = 'PAY';
 // when an order being delivered
-export const DELIVER_REQUEST = 'DELIVER_REQUEST';
-export const DELIVER_SUCCESS = 'DELIVER_SUCCESS';
-export const DELIVER_FAILURE = 'DELIVER_FAILURE';
+export const DELIVER = 'DELIVER';
 // when deleting an order
-export const DELETE_REQUEST = 'DELETE_REQUEST';
-export const DELETE_SUCCESS = 'DELETE_SUCCESS';
-export const DELETE_FAILURE = 'DELETE_FAILURE';
-
-export const CLEAR_ORDER = 'CLEAR_ORDER';
+export const DELETE = 'DELETE';
+// get saved orders
+export const GET_ORDER_REQUEST = 'GET_ORDER_REQUEST';
+export const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
+export const GET_ORDER_FAILURE = 'GET_ORDER_FAILURE';
+// when updating orders
+export const CLEAR_UPDATE_REQUEST = 'CLEAR_UPDATE_REQUEST';
+export const CLEAR_UPDATE_SUCCESS = 'CLEAR_UPDATE_SUCCESS';
+export const CLEAR_UPDATE_FAILURE = 'CLEAR_UPDATE_FAILURE';

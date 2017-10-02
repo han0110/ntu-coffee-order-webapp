@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import products from './products';
-import prepares from './prepares';
+import orders from './orders';
 
 const rootReducer = combineReducers({
   products,
-  prepares,
+  orders,
 });
 
 export default rootReducer;
