@@ -56,7 +56,7 @@ const orders = (state = {
         data: action.data.map(
           element => ({ ...element, paid: true, delivered: true, clear: true }),
         ),
-        nextNumber: action.data.length + 1,
+        nextNumber: action.data[action.data.length - 1].number + 1,
       };
     case GET_ORDER_FAILURE:
       return { ...state, status: 'error' };

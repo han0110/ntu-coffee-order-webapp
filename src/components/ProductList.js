@@ -52,6 +52,8 @@ const Button = styled.i`${props => css`
     ${props.field && `color: ${colors.pink};`};
     ${props.hot && `color: ${colors.addHot};`}
     ${props.ice && `color: ${colors.addIce};`}
+
+    cursor: pointer;
   `}
 `;
 

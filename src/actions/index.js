@@ -22,12 +22,12 @@ export const getSavedOrder = () => async (dispatch) => {
   dispatch({ type: GET_ORDER_REQUEST });
   const res = await axios.get('/api/getOrder');
   if (res.status === 200) dispatch({ type: GET_ORDER_SUCCESS, data: res.data.orders });
-  dispatch({ type: GET_ORDER_FAILURE });
+  else dispatch({ type: GET_ORDER_FAILURE });
 };
 
 export const clearUpdateOrder = orders => async (dispatch) => {
   dispatch({ type: CLEAR_UPDATE_REQUEST });
   const res = await axios.post('/api/update', { orders });
   if (res.status !== 200) dispatch({ type: CLEAR_UPDATE_FAILURE });
-  dispatch({ type: CLEAR_UPDATE_SUCCESS });
+  else dispatch({ type: CLEAR_UPDATE_SUCCESS });
 };

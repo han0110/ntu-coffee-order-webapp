@@ -77,8 +77,8 @@ const Row = styled.div`${props => css`
 const Column = styled.div`${props => css`
   ${props.number && 'flex: 1;'};
   ${props.name && 'flex: 3;'};
-  ${props.paid && 'flex: 1;'};
-  ${props.delivered && 'flex: 1;'};
+  ${props.paid && 'flex: 1; cursor: pointer;'};
+  ${props.delivered && 'flex: 1; cursor: pointer;'};
   ${props.field && `flex: ${props.flex};`};
 
   text-align: ${props.center ? 'center' : ''};
@@ -96,7 +96,10 @@ const Button = styled.i`
 const Clear = styled.div`
   min-height: 35px;
   max-height: 35px;
+  width: 65px;
   padding: 3px 10px;
+
+  box-sizing: border-box;
 
   display: flex;
   align-items: center;
@@ -108,6 +111,7 @@ const Clear = styled.div`
 
   background-color: #DDDDDD;
   border-radius: 5px;
+  cursor: pointer;
 `;
 
 const Loading = styled.div`
